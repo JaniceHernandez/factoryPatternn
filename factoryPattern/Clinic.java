@@ -24,7 +24,7 @@ public class Clinic{
     switch (choice) {
             case 1:
                 pet = new Dog();
-                petRecord.setPetID("P001");
+                petRecord.setPetId("P001");
                 petRecord.setPetName("Bantay");
                 petRecord.setPet(pet);
                 ((Dog) pet).setBreed(("Siberian Husky"));
@@ -32,7 +32,7 @@ public class Clinic{
                 break;
             case 2:
                 pet = new Cat();
-                petRecord.setPetID("P002");
+                petRecord.setPetId("P002");
                 petRecord.setPetName("Muning");
                 petRecord.setPet(pet);
                 ((Cat) pet).setNoOfLives(9);
@@ -50,7 +50,7 @@ public class Clinic{
   }
 
   public static void printRecord(){
-    System.out.println("\nPet ID: " + petRecord.getPetID());
+    System.out.println("\nPet ID: " + petRecord.getPetId());
     System.out.println("Pet Name: " + petRecord.getPetName());
     System.out.println("Pet Kind: " + petRecord.getPet().getClass().getSimpleName());
     System.out.println("Comunication Sound: " + petRecord.getPet().makeSound());
