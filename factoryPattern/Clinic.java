@@ -1,39 +1,68 @@
-package factoryPattern;
-
 import java.util.Scanner;
 
-public class Clinic {
-    public static void main(String[] args){
+public class Clinic{
 
-        Scanner input = new Scanner(System.in);
+    static Scanner input;
+    static PetRecord petRecord;
 
+    public static void main(String[] args) {
+        
+        input = new Scanner(System.in);
+        petRecord = new PetRecord();
+        Pet pet;
+        int choice;
+        
+    do{
+        System.out.println("Choose Pet: ");
         System.out.println("[1] Dog");
         System.out.println("[2] Cat");
-        System.out.print("\nChoose your pet number: ");
-        Integer choice = input.nextInt();
+        System.out.println("[3] Exit");
 
-        PetRecord petFile = new PetRecord();
-        Pet pet;
+        System.out.print("\nChoose your number: ");
+        choice = input.nextInt();
 
-        switch(choice){
-            case 1: pet = new Dog();
-                petFile.setPetId("D01");
-                petFile.setPetName("Bantay");
-                petFile.setPet(pet);
-                ((Dog) pet).setBreed("German Shepperd");
+    switch (choice) {
+            case 1:
+                pet = new Dog();
+                petRecord.setPetID("P001");
+                petRecord.setPetName("Bantay");
+                petRecord.setPet(pet);
+                ((Dog) pet).setBreed(("Siberian Husky"));
+                printRecord();
                 break;
-            case 2: pet = new Cat();
-                petFile.setPetId("C01");
-                petFile.setPetName("Muning");
-                petFile.setPet(pet);
+            case 2:
+                pet = new Cat();
+                petRecord.setPetID("P002");
+                petRecord.setPetName("Muning");
+                petRecord.setPet(pet);
                 ((Cat) pet).setNoOfLives(9);
+                printRecord();
+                break;
+            case 3:
+                System.out.println("\nHernandez, Janice V.\n3BSCS-2\nTerminated");
+                break;
+            default: System.exit(0);
+                break; 
         }
 
-        System.out.println("Pet id is " + petFile.getPetId());
-        System.out.println("Pet name is " + petFile.getPetName());
-        System.out.println("Pet kind: " + petFile.getPet().getClass().getSimpleName());
-        System.out.println("Communication sound: "+ petFile.getPet().makeSound());
-        System.out.println("Play mode: " + petFile.getPet().play());
+    }while(choice != 3);
+    input.close();
+  }
 
-    }
+  public static void printRecord(){
+    System.out.println("\nPet ID: " + petRecord.getPetID());
+    System.out.println("Pet Name: " + petRecord.getPetName());
+    System.out.println("Pet Kind: " + petRecord.getPet().getClass().getSimpleName());
+    System.out.println("Comunication Sound: " + petRecord.getPet().makeSound());
+    System.out.println("Play: " + petRecord.getPet().play());
+
+    if (petRecord.getPet() instanceof Dog) {
+            Dog dog = (Dog) petRecord.getPet();
+            System.out.println("Breed: " + dog.getBreed());
+        } else if (petRecord.getPet() instanceof Cat) {
+            Cat cat = (Cat) petRecord.getPet();
+            System.out.println("Number of Lives: " + cat.getNoOfLives());
+        }
+    System.out.println();
+  }
 }
